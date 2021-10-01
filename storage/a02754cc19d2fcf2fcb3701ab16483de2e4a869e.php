@@ -16,6 +16,12 @@
 </style>
 <a class="btn btn-info" style="margin-bottom: 0"href="./add">Thêm</a>
 <h2 style="text-align: center">Danh sách thành viên</h2>
+
+<form action="" method="get">
+    <input type="text" name="searchValue" placeholder="Nhập từ khóa cần tìm">
+    <button type="submit" name="btnSearch">Tìm</button>
+</form>
+
 <table>
     <thead>
         <th>ID</th>

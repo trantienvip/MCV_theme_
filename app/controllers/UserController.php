@@ -4,7 +4,11 @@ use App\Models\Users;
 
 class UserController extends BaseController{
     public function index(){
-        $users = Users::orderBy('id', 'asc')->get();
+        if (isset($_GET['btnSearch'])) {
+          $users = Users::where('name', 'like' ,"%".$_GET['searchValue']."%" )->get();
+        }else{
+          $users = Users::orderBy('id', 'asc')->get();
+        }
         $this->render('home.user', ['users' => $users, 'title' => 'Danh sách thành viên']);
     }
     public function addUsers(){
@@ -74,7 +78,8 @@ class UserController extends BaseController{
 
     public function delUsers(){
       $id = $_GET['id'];
-      $model = Users::destroy($id);
+      // $model = Users::destroy($id);
+      Users::softDeletes($id);
       header('Location: ./user');
     }
 };
